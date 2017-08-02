@@ -36,8 +36,8 @@ void Gerenciador::criaListas(char c)
          exit(0);
       }
       else{
-         cout << "Opcao inválida!  ";
-         entrada= userInterface->inserirOpcao();
+         cout << "Opcao invÃ¡lida!  ";
+         entrada= userInterface->insertOption();
       }
    }
 }
@@ -50,14 +50,14 @@ void Gerenciador::executarComandoMenuPrincipal(char c)
 
    while(true){
       if (entrada == '1'){
-         userInterface->limparTela();
-         userInterface->menuOpcoes();
+         userInterface->clearScreen();
+         userInterface->optionMenu();
          this->atual= MyList1;
          break;
       }
       else if (entrada == '2'){
-         userInterface->limparTela();
-         userInterface->menuOpcoes();
+         userInterface->clearScreen();
+         userInterface->optionMenu();
          this->atual= MyList2;
          break;
       }
@@ -65,8 +65,8 @@ void Gerenciador::executarComandoMenuPrincipal(char c)
          exit(0);
       }
       else{
-         cout << "Opcao inválida!  ";
-         entrada= userInterface->inserirOpcao();
+         cout << "Opcao invÃ¡lida!  ";
+         entrada= userInterface->insertOption();
       }
    }
 }
@@ -89,9 +89,9 @@ void Gerenciador::executarComando(char c){
             cout << "Valor " << value << " adicionado a posicao " << pos << "   ";
             atual->printForward();
             system("pause");
-            userInterface->limparTela();
-            userInterface->menuOpcoes();
-            entrada= userInterface->inserirOpcao();
+            userInterface->clearScreen();
+            userInterface->optionMenu();
+            entrada= userInterface->insertOption();
             break;
          
          case '1':
@@ -102,9 +102,9 @@ void Gerenciador::executarComando(char c){
             cout << "Valor " << value << " adicionado ao fim da MyList" << "   ";
             atual->printForward();
             system("pause");
-            userInterface->limparTela();
-            userInterface->menuOpcoes();
-            entrada= userInterface->inserirOpcao();
+            userInterface->clearScreen();
+            userInterface->optionMenu();
+            entrada= userInterface->insertOption();
             break;
 
          case '2':
@@ -115,32 +115,32 @@ void Gerenciador::executarComando(char c){
             cout << "Posicao " << pos << " removida  ";
             atual->printForward(); 
             system("pause");
-            userInterface->limparTela();
-            userInterface->menuOpcoes();
-            entrada= userInterface->inserirOpcao();
+            userInterface->clearScreen();
+            userInterface->optionMenu();
+            entrada= userInterface->insertOption();
             break;
 
          case '3':
-            atual->delInicio();
+            atual->del(1);
             cout<<endl;
             cout << "Inicio da MyList excluido!  ";
             atual->printForward();
             system("pause");
-            userInterface->limparTela();
-            userInterface->menuOpcoes();
-            entrada= userInterface->inserirOpcao();
+            userInterface->clearScreen();
+            userInterface->optionMenu();
+            entrada= userInterface->insertOption();
 
             break;
 
          case '4':
-            atual->delFim();
+            atual->del(atual->getSize());
             cout<<endl;
             cout << "Fim da MyList excluido!  ";
             atual->printForward();
             system("pause");
-            userInterface->limparTela();
-            userInterface->menuOpcoes();
-            entrada= userInterface->inserirOpcao();
+            userInterface->clearScreen();
+            userInterface->optionMenu();
+            entrada= userInterface->insertOption();
 
             break;
 
@@ -149,9 +149,9 @@ void Gerenciador::executarComando(char c){
             cout<<endl;
             atual->printForward();
             system("pause");
-            userInterface->limparTela();
-            userInterface->menuOpcoes();
-            entrada= userInterface->inserirOpcao();
+            userInterface->clearScreen();
+            userInterface->optionMenu();
+            entrada= userInterface->insertOption();
             break;
 
          case '6':
@@ -159,9 +159,9 @@ void Gerenciador::executarComando(char c){
             cout<<endl;
             atual->printBackward();
             system("pause");
-            userInterface->limparTela();
-            userInterface->menuOpcoes();
-            entrada= userInterface->inserirOpcao();
+            userInterface->clearScreen();
+            userInterface->optionMenu();
+            entrada= userInterface->insertOption();
             break;
 
          case '7':
@@ -169,9 +169,9 @@ void Gerenciador::executarComando(char c){
             cout<<endl;
             cout<< "Lista esvaziada!" <<endl;
             system("pause");
-            userInterface->limparTela();
-            userInterface->menuOpcoes();
-            entrada= userInterface->inserirOpcao();
+            userInterface->clearScreen();
+            userInterface->optionMenu();
+            entrada= userInterface->insertOption();
             break;
 
          case '8':
@@ -180,35 +180,35 @@ void Gerenciador::executarComando(char c){
             atual->printForward();
             cout<<endl;
             system("pause");
-            userInterface->limparTela();
-            userInterface->menuOpcoes();
-            entrada= userInterface->inserirOpcao();
+            userInterface->clearScreen();
+            userInterface->optionMenu();
+            entrada= userInterface->insertOption();
             break;
 
          case '9':
             if(atual == MyList1)
-               atual->concatenar(MyList2);
+               atual->concatenate(MyList2);
             else if(atual == MyList2)
-               atual->concatenar(MyList1);
+               atual->concatenate(MyList1);
             cout<<endl;
             cout<<"Lista concatenada!"<<endl; 
             system("pause");
-            userInterface->limparTela();
-            userInterface->menuOpcoes();
-            entrada= userInterface->inserirOpcao();
+            userInterface->clearScreen();
+            userInterface->optionMenu();
+            entrada= userInterface->insertOption();
             break;
 
          case 'X':
-            userInterface->limparTela();
+            userInterface->clearScreen();
             cond= false;
             break;
          
          default:
-            cout<< "Opcao inválida! Insira outra: ";
+            cout<< "Opcao invÃ¡lida! Insira outra: ";
             system("pause");
-            userInterface->limparTela();
-            userInterface->menuOpcoes();
-            entrada= userInterface->inserirOpcao();
+            userInterface->clearScreen();
+            userInterface->optionMenu();
+            entrada= userInterface->insertOption();
          }
    }
 
@@ -216,21 +216,21 @@ void Gerenciador::executarComando(char c){
 
 void Gerenciador::execucaoSistema(){
   
-      userInterface->bemVindo();
-      char c1= userInterface->inserirOpcao();
+      userInterface->welcome();
+      char c1= userInterface->insertOption();
       criaListas(c1);
 
-      userInterface->limparTela();
-      userInterface->printarLista(MyList1, MyList2);
+      userInterface->clearScreen();
+      userInterface->print(MyList1, MyList2);
       cout<<endl;
 
       bool cond= true;
       
       while(cond){
-         userInterface->menuPrincipal();
-         char option= userInterface->inserirOpcao();
+         userInterface->mainMenu();
+         char option= userInterface->insertOption();
          executarComandoMenuPrincipal(option);
-         option= userInterface->inserirOpcao();
+         option= userInterface->insertOption();
          executarComando(option);
       }
       
@@ -249,14 +249,15 @@ void Gerenciador::deleteAplicacao(){
    verificaMemoria();
 
    MyList1->clear();
-   delete MyList1->getPrimeiro();
-   delete MyList1->getUltimo();
+   delete MyList1->getFirst();
+   delete MyList1->getLast();
    delete MyList1;
    verificaMemoria();
    MyList2->clear();
-   delete MyList2->getPrimeiro();
-   delete MyList2->getUltimo();
+   delete MyList2->getFirst();
+   delete MyList2->getLast();
    delete MyList2;
    verificaMemoria();
    delete this;
 }
+

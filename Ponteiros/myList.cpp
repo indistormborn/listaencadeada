@@ -50,7 +50,7 @@ void MyList::add(int v, int pos)
 	Element *newElement= new Element(v);
  
    if (pos > 1) {
-      daPosicao= searchForward(pos);
+      daPosicao= search(pos);
       if (daPosicao) {
          Element *auxPrevious= daPosicao->getPrevious();
 
@@ -75,7 +75,7 @@ void MyList::add(int v, int pos)
 
 void MyList::del(int pos)
 {
-   Element *e= searchForward(pos);
+   Element *e= search(pos);
 
    if (e) {
       Element* next= e->getNext();
@@ -93,7 +93,6 @@ void MyList::del(int pos)
 
       size--;
       delete e;
-      //?????printForward();
    }
    else {
       cout <<"AVISO: impossivel deletar, posicao informada nao existe na MyList"<<endl;
@@ -101,45 +100,9 @@ void MyList::del(int pos)
    }
 }
 
-void MyList::delFim()
-{
-   Element *deletar= last;
-   
-   if (last != nullptr) {
-      if (last != first) {
-         last->getPrevious()->setNext(nullptr);
-         last= last->getPrevious();
-      }
-      else
-         last= first= nullptr;
-
-      delete deletar;
-   }
-   else
-      cout << "Impossivel deletar! A MyList está vazia" <<endl;
-}
-
-void MyList::delInicio()
-{
-   Element *deletar = first;
-   
-   if (first != nullptr) {
-      if(first != last) {
-         first->getNext()->setPrevious(nullptr);
-         first= first->getNext();
-      }
-      else
-         last= first= nullptr;
-
-   delete deletar;
-   }
-   else
-      cout<< "Impossivel deletar! A MyList está vazia" <<endl;   
-}
-
 void MyList::set(int v, int pos)
 {
-   Element *e= searchForward(pos);
+   Element *e= search(pos);
    
    if(e != nullptr)
       e->setValue(v);
@@ -149,7 +112,7 @@ void MyList::set(int v, int pos)
 
 void MyList::get(int pos)
 {
-   Element *e= searchForward(pos);
+   Element *e= search(pos);
    
    if(e != nullptr)
       cout << "Valor da pos " << pos << " eh: " << e->getValue() << endl;
@@ -205,49 +168,7 @@ void MyList::printBackward()
    cout << "}" << endl; 
 }
 
-//void MyList::bubblesort()
-//{
-//   Element *pos= first; 
-//   Element *prox= new Element();
-//   bool ordenada= false;   
-//
-//   while (!ordenada){
-//       int count= 0;
-//
-//       for(int i= 0; i < size; i++){
-//          //quando chega no last, pula para o first    
-//          if(pos->getNext() == nullptr)          
-//             pos= first;
-//          
-//          prox= pos->getNext();  
-//          if (pos->getValue() > prox->getValue()){
-//             prox->setPrevious(pos->getPrevious());
-//             pos->setPrevious(prox);
-//             
-//             if (prox->getPrevious() != nullptr)
-//                prox->getPrevious()->setNext(prox);
-//             
-//             pos->setNext(prox->getNext());
-//             prox->setNext(pos);
-//          
-//             if (pos->getNext() != nullptr)
-//                pos->getNext()->setPrevious(pos);
-//          
-//             if (prox->getPrevious() == nullptr)
-//                first= prox;
-//             else if(pos->getNext() == nullptr) 
-//                last= pos;
-//
-//             count++;
-//          }     
-//          pos= prox;               
-//      }   
-//          
-//      if (count == 0){
-//         ordenada= true;
-//      }   
-//   }
-//}
+
 
 void MyList::bubblesort()
 {
@@ -269,43 +190,6 @@ void MyList::bubblesort()
       }
       countLaco1--;
    }
-
-/*while (!ordenada){
-       int count= 0;
-
-       for(int i= 0; i < size; i++){
-          //quando chega no last, pula para o first    
-          if(pos->getNext() == nullptr)          
-             pos= first;
-          
-          prox= pos->getNext();  
-          if (pos->getValue() > prox->getValue()){
-             prox->setPrevious(pos->getPrevious());
-             pos->setPrevious(prox);
-             
-             if (prox->getPrevious() != nullptr)
-                prox->getPrevious()->setNext(prox);
-             
-             pos->setNext(prox->getNext());
-             prox->setNext(pos);
-          
-             if (pos->getNext() != nullptr)
-                pos->getNext()->setPrevious(pos);
-          
-             if (prox->getPrevious() == nullptr)
-                first= prox;
-             else if(pos->getNext() == nullptr) 
-                last= pos;
-
-             count++;
-          }     
-          pos= prox;               
-      }   
-          
-      if(count == 0){
-         ordenada= true;
-      }   
-   }*/
 }
 
 Element * MyList::searchForward(int pos)
@@ -341,7 +225,7 @@ Element * MyList::searchBackward(int pos)
    return e;
 }
 
-Element * MyList::binarySearchByPos(int pos)
+Element * MyList::search(int pos)
 {
    Element *e;
    int meio= size/2;
@@ -355,17 +239,15 @@ Element * MyList::binarySearchByPos(int pos)
    return e;
 }
 
-void MyList::concatenar(MyList* l){
-  Element *e= l->getPrimeiro();
+void MyList::concatenate(MyList* l){
+  Element *e= l->getFirst();
 
    if( l != nullptr ){
-      if( (first != nullptr) && (l->getPrimeiro() != nullptr) ){
-         for(int i=0; i < l->getSize(); i++){
-            int value= e->getValue();
-            add(value);
-            e= e->getNext();
+      if( (first != nullptr) && (l->getFirst() != nullptr) ){
+         last->setNext(l->getFirst());
+         last= l->getLast();
          }
-         l->clear();
-      }   
-   }
+      l->clear();
+   }   
 }
+

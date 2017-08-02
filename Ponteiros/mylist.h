@@ -22,15 +22,13 @@ public:
    void add(int v) { addEnd(v); }
    void add(int v, int pos);
    void del(int pos);
-   void delInicio();
-   void delFim();
    
    void set(int v, int pos);
    void get(int pos);
 
    void bubblesort();
    void clear();
-   void concatenar(MyList*);
+   void concatenate(MyList*);
 
    void printForward();
    void printBackward(); 
@@ -39,9 +37,9 @@ public:
 
    Element* searchForward(int pos);
    Element* searchBackward(int pos);
-   Element* getPrimeiro() { return first; }
-   Element* getUltimo() { return last; }
-   Element* binarySearchByPos(int pos);
+   Element* getFirst() { return first; }
+   Element* getLast() { return last; }
+   Element* search(int pos);
 };
 
 #endif //INCLUDED_MyList_H

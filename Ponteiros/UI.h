@@ -10,19 +10,19 @@ class Element;
 class UI
 {
 public:
-   UI(){}
    ~UI(){}
+   UI(){}
 
-   void bemVindo();
+   void welcome();
 
-   void printarLista(MyList * l1, MyList * l2);
+   void print(MyList * l1, MyList * l2);
   
-   void menuPrincipal();
-   void menuOpcoes();
+   void mainMenu();
+   void optionMenu();
   
-   void limparTela() { system("cls"); }
+   void clearScreen() { system("cls"); }
 
-   char inserirOpcao();
+   char insertOption();
 };
 
 #endif //INCLUDED_UI_H

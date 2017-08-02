@@ -83,7 +83,7 @@
   <ItemGroup>
     <ClCompile Include="Gerenciador.cpp" />
     <ClCompile Include="myList.cpp" />
-    <ClCompile Include="Ponteiros.cpp" />
+    <ClCompile Include="main.cpp" />
     <ClCompile Include="UI.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

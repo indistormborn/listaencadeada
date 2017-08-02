@@ -5,7 +5,7 @@
 
 using namespace std;
 
-void UI::bemVindo()
+void UI::welcome()
 {
    cout << "------------------- BEM-VINDO -------------------" << endl;
    cout << "Deseja gerar as MyLists? [s/n]" << endl;
@@ -14,7 +14,7 @@ void UI::bemVindo()
 
 }
 
-void UI::printarLista(MyList * l1, MyList * l2)
+void UI::print(MyList * l1, MyList * l2)
 {  
    cout<<"Primeira MyList: ";
    l1->printForward();
@@ -24,7 +24,7 @@ void UI::printarLista(MyList * l1, MyList * l2)
   
 }
 
-void UI::menuPrincipal()
+void UI::mainMenu()
 {
    cout << "--------------- MENU PRINCIPAL ---------------"<<endl;
    cout << "|                                            |"<<endl;
@@ -35,7 +35,7 @@ void UI::menuPrincipal()
    
 }
 
-void UI::menuOpcoes()
+void UI::optionMenu()
 {
    cout << "------------------- Opcoes de manipulacao -------------------" <<endl;
    cout << "0- Adicionar na posicao" <<endl;
@@ -56,7 +56,7 @@ void UI::menuOpcoes()
 }
 
 
-char UI::inserirOpcao()
+char UI::insertOption()
 {
    char t;
    cout<<"Entre com a opcao desejada:  ";
